@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'SIRGame'
-copyright = '2020, NGauthier'
-author = 'NGauthier'
+project = 'Software Developpement Bobby'
+copyright = '2020, Floreau Poquillon Sorin'
+author = 'Titouan Poquillon, Armande Cirot, Claire Lemonnier, Guilhem Panneau, Julian Floreau, Baptiste Sorin'
 
 # The full version, including alpha/beta/rc tags
 release = '0'
@@ -53,7 +53,6 @@ html_theme = 'alabaster'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-autoclass_content= 'both'
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../..'))
