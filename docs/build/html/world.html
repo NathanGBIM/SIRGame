@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>world module &#8212; SIRGame 0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Graphical UI (gui) module" href="gui.html" />
+    <link rel="prev" title="agent module" href="agent.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-world">
+<span id="world-module"></span><h1>world module<a class="headerlink" href="#module-world" title="Permalink to this headline">¶</a></h1>
+<p>SIRGame</p>
+<p>Copyright © 2020 Nathan GAUTHIER</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<dl class="py class">
+<dt id="world.World">
+<em class="property">class </em><code class="sig-prename descclassname">world.</code><code class="sig-name descname">World</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">w</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">h</span><span class="o">=</span><span class="default_value">100</span></em><span class="sig-paren">)</span><a class="headerlink" href="#world.World" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>World class</p>
+<blockquote>
+<div><p>An object of this class is a world in which the simulation takes place.</p>
+</div></blockquote>
+<p>Attributes:</p>
+<ul class="simple">
+<li><p>w(int) and h(int): the width and height of the world</p></li>
+<li><p>pop(agent[]): the list of agent (class in agent.py) forming the population simulated</p></li>
+<li><p>obstacles((int,int)[]): a list of (x,y) tuple, coordinates occupied by the obstacles</p></li>
+</ul>
+<p>Lists of method:</p>
+<ul class="simple">
+<li><p>__init__</p></li>
+<li><p>__str__</p></li>
+<li><p>put_obstacles</p></li>
+<li><p>create_agents</p></li>
+<li><p>nb</p></li>
+<li><p>move</p></li>
+<li><p>infect</p></li>
+<li><p>contact</p></li>
+<li><p>recover_or_die</p></li>
+<li><p>run</p></li>
+<li><p>stats</p></li>
+<li><p>erase</p></li>
+</ul>
+<p>Note : in the main section of the world.py file is commented an example of worlds creation and export in a .txt file.</p>
+<p>This was used as test during the coding phase and was left as tool if the project was to be continued.</p>
+<p>Creation of a world</p>
+<p>Parameters:</p>
+<p>-w(int) : width</p>
+<p>-h(int) : height</p>
+<p>Returns:</p>
+<p>An world with the appropriate dimension is created, its “obstacles” and “pop” attributes are left empty and can be initialised with
+the “put_obstacles” and “create_agents” functions.</p>
+<dl class="py method">
+<dt id="world.World.contact">
+<code class="sig-name descname">contact</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#world.World.contact" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a dimension 2 tab of the dimension of the grid, containing a list of agents present for each position.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="world.World.create_agents">
+<code class="sig-name descname">create_agents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nb</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">prop_infectious</span><span class="o">=</span><span class="default_value">0.2</span></em>, <em class="sig-param"><span class="n">p_i</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">p_r</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">p_d</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#world.World.create_agents" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to create the population of agents.</p>
+<p>Parameters:</p>
+<p>-nb(int):number of created agent</p>
+<p>-prop_infectious(float): proportion of infected agent in the created population</p>
+<p>-p_i(float): probability of infection of infected agents</p>
+<p>-p_r(float):probability of recovery of infected agents</p>
+<p>-p_d(float):probability of death of infected agents</p>
+<p>Returns:</p>
+<p>Create the agents using the “__init__” function of the “agent.py” class, and add them to the “pop” attribute of this object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="world.World.erase">
+<code class="sig-name descname">erase</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#world.World.erase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete all agent and obstacle from memory, pop and obstacles become empty list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="world.World.infect">
+<code class="sig-name descname">infect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">list_of_agents</span></em><span class="sig-paren">)</span><a class="headerlink" href="#world.World.infect" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used after the agents moved.</p>
+<p>Parameters:</p>
+<p>list_of_agents (agent[]): list of agents present in the same position.</p>
+<p>Returns:</p>
+<p>If one of the agent is infected, check if the other agents of the list who are susceptible become infected too,
+and then changes its state to “INFECTIOUS” if it is the case.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="world.World.move">
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#world.World.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>applies the function “move()” to all agents in the population (see agent.py documentation)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="world.World.nb">
+<code class="sig-name descname">nb</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#world.World.nb" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the number of agent in the population</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="world.World.put_obstacles">
+<code class="sig-name descname">put_obstacles</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span><span class="o">=</span><span class="default_value">'WALL_WITH_HOLE'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#world.World.put_obstacles" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to create the obstacles</p>
+<p>Parameters:</p>
+<p>config(str): configuration of the obstacle (the only one implemented for now is “WALL_WITH_HOLE”, a vertical wall with a 1 sized gap
+in the middle, placed in the middle of the horizontal axe).</p>
+<p>Returns:</p>
+<p>Add all position obstructed by the obstacle to the obstacles attribute.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="world.World.recover_or_die">
+<code class="sig-name descname">recover_or_die</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#world.World.recover_or_die" title="Permalink to this definition">¶</a></dt>
+<dd><p>applies the function “recover_or_die()” to all agents in the population (see agent.py documentation)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="world.World.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#world.World.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes the world move one time step forward, by applying successively the functions move(), infect() on the superposing agents, and recover_or_die()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="world.World.stats">
+<code class="sig-name descname">stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#world.World.stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the tuple (number of susceptible agents, infected, recovered, dead) present in the population</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">SIRGame</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">A nice picture describing the SIR model as an introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agent.html">agent module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">world module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gui.html">Graphical UI (gui) module</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="agent.html" title="previous chapter">agent module</a></li>
+      <li>Next: <a href="gui.html" title="next chapter">Graphical UI (gui) module</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, NGauthier.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/world.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Graphical UI (gui) module &#8212; SIRGame 0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="world module" href="world.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-gui">
+<span id="graphical-ui-gui-module"></span><h1>Graphical UI (gui) module<a class="headerlink" href="#module-gui" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="gui.WorldView">
+<em class="property">class </em><code class="sig-prename descclassname">gui.</code><code class="sig-name descname">WorldView</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">window</span></em>, <em class="sig-param"><span class="n">w</span><span class="o">=</span><span class="default_value">400</span></em>, <em class="sig-param"><span class="n">h</span><span class="o">=</span><span class="default_value">400</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'black'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.WorldView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tkinter.Canvas</span></code></p>
+<p>WorldView class</p>
+<blockquote>
+<div><p>An object of this class is a display canvas for the simulation.</p>
+<p>It does not include the buttons and widgets and the function attached to it (those are declared in the main section of gui.py).</p>
+</div></blockquote>
+<p>Attributes:</p>
+<ul class="simple">
+<li><p>width (int): width of the canvas in pixel</p></li>
+<li><p>height (int): height of the canvas in pixel</p></li>
+<li><p>window (tk.frame): frame in which the canvas is created</p></li>
+<li><p>color (str): color of the background (black by default)</p></li>
+<li><p>list_ovals (tk.oval[]): list of all the ovals representing the agents</p></li>
+<li><p>pause (bool): boolean stating if the simulation is running or not</p></li>
+<li><p>spaceline (int): space beetween the lines of the grid in pixel</p></li>
+</ul>
+<p>Lists of method:</p>
+<ul class="simple">
+<li><p>__init__</p></li>
+<li><p>draw_grid</p></li>
+<li><p>draw_ovals</p></li>
+<li><p>update_ovals</p></li>
+<li><p>switch</p></li>
+</ul>
+<p>Creation of the canvas</p>
+<blockquote>
+<div><p>Parameters:</p>
+<ul class="simple">
+<li><p>w (int) : width of</p></li>
+<li><p>h (int) : height of</p></li>
+<li><p>bg (str) : colour of the background (black by default)</p></li>
+<li><p>window (tk.frame) : frame in which the canvas is created</p></li>
+</ul>
+<p>Returns:</p>
+<p>An canvas with the appropriate size and background is created in the “window” frame.</p>
+<p>The “list_ovals” attribute is left empty and can be initialise with the “draw_ovals” function.</p>
+</div></blockquote>
+<p>The “spacelines” attribute is initialised at an arbitrary value, as it will be initialised in the “draw_grid” function anyway.</p>
+<p>The “pause” attribute is initialised at “True” (the simulation is paused during initialisation).</p>
+<dl class="py method">
+<dt id="gui.WorldView.draw_grid">
+<code class="sig-name descname">draw_grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nblines</span></em>, <em class="sig-param"><span class="n">nbcolumns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.WorldView.draw_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialisation of the grid</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p>nblines (int) : number of line to draw</p></li>
+<li><p>nbcolumns (int) : number of column to draw</p></li>
+</ul>
+<p>Returns:</p>
+<p>Draw the lines and the columns equally spaced on the canvas to represent the grid</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gui.WorldView.draw_ovals">
+<code class="sig-name descname">draw_ovals</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">agents</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.WorldView.draw_ovals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialisation of the ovals</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p>agents (agent[]) : list of agents in the simulation</p></li>
+</ul>
+<p>Returns:</p>
+<p>Create the ovals representing the agent in the corresponding position and add the to the “list_ovals” attributes.</p>
+<p>The colour of the oval will indicate the state of the agent:</p>
+<p>green for susceptible, blue for recovered, red for infectious.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gui.WorldView.switch">
+<code class="sig-name descname">switch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.WorldView.switch" title="Permalink to this definition">¶</a></dt>
+<dd><p>this function is used to switch the state of the “pause” attribute</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gui.WorldView.update_ovals">
+<code class="sig-name descname">update_ovals</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">agents</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.WorldView.update_ovals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the ovals</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p>agents (agent[]) : new list of agent</p></li>
+</ul>
+<p>Returns:</p>
+<p>Updates the ovals in the “list_ovals” attributes with their new coordinates and colours.</p>
+<p>The colour of the oval will indicate the state of the agent:</p>
+<p>green for susceptible, blue for recovered, red for infectious, grey for dead.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">SIRGame</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">A nice picture describing the SIR model as an introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agent.html">agent module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world.html">world module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Graphical UI (gui) module</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="world.html" title="previous chapter">world module</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, NGauthier.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/gui.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
