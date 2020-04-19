@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Software Developpement Bobby'
-copyright = '2020, Floreau Poquillon Sorin'
-author = 'Titouan Poquillon, Armande Cirot, Claire Lemonnier, Guilhem Panneau, Julian Floreau, Baptiste Sorin'
+project = 'SIRGame'
+copyright = '2020, NGauthier'
+author = 'NGauthier'
 
 # The full version, including alpha/beta/rc tags
 release = '0'
@@ -52,7 +52,8 @@ html_theme = 'alabaster'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-
+master_doc = 'index'
+autoclass_content= 'both'
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../..'))
